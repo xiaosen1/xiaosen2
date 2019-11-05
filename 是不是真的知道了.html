@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数
+        function Fn() {
+            this.x = 100
+            this.y = 200
+            this.getX = function(){
+                console.log(this.x)
+            }
+        }
+    // 赋址过程 如果找实例的constructor Object 
+    Fn.prototype = {
+        y:400,
+        getx:function(){
+            console.log(this.x)
+        },
+        getY:function(){
+            console.log(this.y)
+        },
+        sum:function(){
+            console.log(this.x+this.y)
+        }
+    }
+    var f1 = new Fn()
+    var f2 = new Fn
+    console.log(f1.getX === f2.getX)  // false
+    console.log(f1.getY === f2.getY)  // true
+    console.log(f1._proto_.getX === Fn.prototype.getY)  // true
+    console.log(f1._proto_.getX === f2.getX) //false
+    console.log(f1.getX === Fn.prototype.getX)  // false
+    console.log(f1.constructor)  // object
+
+    // fn.prototype = {_proto_:Object}
+    console.log
+    (Fn.prototype._proto_.constructor)  // Object
+    f1.getX()  //100
+    f1._proto_.getX()  // undefined
+    f2.getY()  //200
+    Fn.prototype.getY()  //400
+    f1.sum()  // 300
+    Fn.prototype.sum  //  NaN
+    </script>
+</body>
+
+</html>
