@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /* 
+        call(that,多个)
+        apply(that,两个)
+        bind(that,多个)
+        它们的共同特点：第一个参数都是改变this指向的, 函数天生自带的
+
+        null和undefined是无效的，穿了都是window
+
+        1.this是实例
+        2.默认return实例，如果return为引用类型就为引用类型
+        3.实例的原型链 === 构造函数的原型
+        4.可以不加括号调用
+     */
+
+     function Fn(name){
+         this.name = name
+     }
+
+     let f =New(Fn,'啦啦啦')  // ->new Fn()
+
+     console.log(f.constructor)
+    //  function Fn(){}
+     
+    //  New(Fn)  // ->new Fn
+
+     function New(fn,...arg){
+        let obj = new Object; // 实例
+        let callback = fn.call(obj,...arg)  // 把构造函数的this改成实例
+
+        // 使实例的原型链等于构造函数的原型
+        obj._proto_ = fn.prototype
+
+
+        /* 
+         要么是个对象类型，要么是个函数
+         */
+
+         if(callback !== null && typeof callback ==='object' || typeof callback === 'function'){
+             return callback
+         }
+         return obj
+     }
+
+    //  new Fn
+    </script>
+</body>
+</html>

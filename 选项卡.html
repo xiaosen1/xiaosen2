@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            .active{
+                background: yellow;
+            }
+            #box div,#box2 div{
+                width:200px;
+                height:100px;
+                border:1px solid #000;
+                display: none;
+            }
+            #box div.show,#box2 div.show{
+                display: block;
+            }
+            </style>
+            
+</head>
+<body>
+        <div id="box">
+                <button class="active" index="0">按钮一</button>
+                <button index="1">按钮二</button>
+                <button index="2">按钮三</button>
+                <div class="show">11111</div>
+                <div>22222</div>
+                <div>33333</div>
+            </div>
+            <div id="box2">
+                    <button class="active" index="0">按钮一</button>
+                    <button index="1">按钮二</button>
+                    <button index="2">按钮三</button>
+                    <div class="show">11111</div>
+                    <div>22222</div>
+                    <div>33333</div>
+                </div>
+        
+
+    <script>
+    /* 
+    实例：点谁是谁的this
+     */
+
+     function Tab(id){
+         this.box = document.getElementById(id)
+         this.divs = this.box.querySelectorAll('div')
+         this.btns = this.box.querySelectorAll('button')
+         this.prevIndex = 0
+     }
+    //  给相应的元素绑定相应的事件
+     Tab.prototype.events = function(evName = 'onclick'){
+         const that = this   // 实例
+         // 通过for循环来给相应的元素添加事件  this点击的是谁谁就是this
+         for (let i = 0; i < btns.length; i++) {
+             // evName = 'onclick' 同样可以理解为 点击这个btns的每一项出现相应的效果  只是换了一种写的方式  意思一样  change： 转换  变换  点击变换每一项
+             this.btns[i][evName] = function(){
+                that.change(i)
+             }  
+         }
+     }
+     // 绑定元素，通过点击元素之后跟着切换下一项
+     Tab.prototype.change = function(){
+
+     }
+    </script>
+</body>
+</html>
