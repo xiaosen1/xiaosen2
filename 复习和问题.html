@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /* 
+    this95%是实例   5%是点击事件
+    定点清除：1.先把刚才的class清楚
+             2.在把当前的class添加上
+    面向过程改面向对象：
+                    1.把所有的变量放到类中，把变量变成属性
+                    2.把函数抽出来，挂到构造函数的原型上
+    关于面向对象没有思路问题：
+                        多敲，多想（程序思想是可以记忆的）
+                        1.获取元素
+                        2.绑定事件
+                        3.点击切换：先把所有的class清掉，再把当前的class加上
+        箭头函数this
+        call的使用
+     
+     */
+    //  对象的解构赋值 :
+    //  let obj ={
+    //         p:[
+    //             'Hello',
+    //             {
+    //                 y:'World',
+    //                 z:{
+    //                     x:[
+    //                         {
+    //                             j:0
+    //                         }
+    //                     ]
+    //                 }
+    //             }
+    //         ]
+    //     }
+    //     // 这个是变量默认值 默认就是0
+    //     function move({x=0,y = 0} = {}){
+    //         return [x,y]
+    //     }
+    //     console.log(move({x:3,y:8}))  // 3  8
+    //     console.log(move({x:3}))   // 3  0
+    //     console.log(move({}))   // 0 0
+    //     console.log(move())  // 0 0
+
+    //     // 这个是move的参数默认值而不是变量默认值
+    //     function move({x,y}={x:0,y:0}){
+    //         return [x,y]
+    //     }
+    //     console.log(move({x:3,y:8})) // 3 8
+    //     console.log(move({x:3}))    // 3 undefined
+    //     console.log(move({})) // undefined  undefined
+    //     console.log(move())  //undefined undefined
+        // document.onclick = function(){
+        //     // 属于局部变量
+        //     function ff(){
+        //         let fn = () =>{
+        //             // 使用new之后，this就变成了实例，实例也就是一个对象
+        //             console.log(this) // ff{}
+        //         }
+        //         fn()
+        //     }
+        //     new ff()
+        // }
+
+        // Array.prototype.mySlice = function(){
+        //     let arr = []
+        //     for (let i = 0; i < this.length; i++) {
+        //         arr.push(this[i])
+                
+        //     }
+        //     return arr
+        // }
+        // // Object.prototype.toString()
+        // // ({}).toString.call()
+
+        // let ary = [1,2,3]
+        // function ff(){
+        //     let arg = [].mySlice.call(arguments)// argument  实例的集合  把值借过来赋给arg
+        //     console.log(arg)  //[1,2,3,3,4,5,6,7]
+        // }
+        // ff(1,2,3,3,4,5,6,7)
+        // console.log(ary.mySlice)
+
+
+        // let obj = {
+        //     p:[
+        //         'Hello',
+        //         {
+        //             y:'World',
+        //             z:{
+        //                 x:[
+        //                     {
+        //                         j:0
+        //                     }
+        //                 ]
+        //             }
+        //         }
+        //     ]
+        // }
+        // // 把值取下来，并把需要获取的值改为其他值代替最后输出得出
+        // let{
+        //     p:[
+        //         a,
+        //         {
+        //             y:b,
+        //             z:{
+        //                 x:[
+        //                     {j:c}
+        //                 ]
+        //             }
+        //         }
+        //     ]
+        // } = obj
+        // console.log(a,b,c)
+
+            // 有就走传递的，没有就走默认的
+        function move({x=0,y=0}={}){
+            return [x,y]
+        }
+        let{log} = console
+        console.log(move({x:3,y:8}))  // [3,8]
+        console.log(move({x:3})) //[3,0]
+        console.log(move({}))  // [0,0]
+        console.log(move())  // [0,0]
+
+        // function ff({x=100}={}){
+        //     // console.log(obj.x)
+        //     console.log(x)
+        // }
+        function ff({x}={x:100}){
+            console.log(x)  //100
+        }
+        ff()
+
+        let{x=1} = {x:100}
+    //  let fn=()=>{
+    //      console.log(this)
+    //  }
+    //  fn()  // window
+    </script>
+</body>
+</html>

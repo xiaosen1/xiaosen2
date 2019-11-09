@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name,age){
+            this.name = name
+            this.age = age
+            console.log('此处无银三百两')
+        }
+        Person.prototype.say = function(){
+            alert('我的名字叫'+this.name)
+        }
+        function Police(name,age){
+            Person.call(this,name,age)
+        }
+        /* 
+        function Paohui(){}
+        Paohui.prototype = Person.prototype
+        Paohui.prototype = new Paohui
+         */
+         Police.prototype = new Person  //new Paohui
+         Police.prototype.constructor = Police
+
+         /* 
+         p2.say ->p2._proto_ ->Police.prototype ->new 
+
+         Person ->new Person() ._proto_->Person.prototype
+
+          */
+
+          /* 
+          p2.say->p2._proto_->Police.prototype
+
+          new Paohui()-> new Paohui()._proto_ -> Paohui.prototype ->Person.prototype
+          Person.prototype.say
+           */
+
+           Police.prototype.kongfu = function(){
+               console.log(this.name+'啦啦啦')
+           }
+           let p2 = new Police('大雄',10)
+           let p1 = new Person('静香',10)
+           console.log(p2.constructor)
+    </script>
+</body>
+</html>
